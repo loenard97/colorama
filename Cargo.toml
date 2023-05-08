@@ -1,0 +1,15 @@
+[package]
+name = "colorama"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "A simple way to colorize the output of your cli application."
+authors = ["Dennis Lönard"]
+homepage = "https://github.com/loenard97/colorama"
+repository = "https://github.com/loenard97/colorama"
+keywords = ["terminal", "console", "color", "ansi"]
+readme = "README.md"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
