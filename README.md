@@ -8,7 +8,8 @@ will wrap your string with the corresponding ANSI escape sequence.
 
 Different styles can be concatenated together:
 ```
-String::from("Hello World").color("red").background("green").style("bold")
+use colorama::Colored;
+String::from("Hello World").color("red").background("green").style("bold");
 ```
 Unknown color / style names are silently ignored.
 

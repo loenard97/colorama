@@ -8,7 +8,8 @@
 //! 
 //! Different styles can be concatenated together:
 //! ```
-//! String::from("Hello World").color("red").background("green").style("bold")
+//! use colorama::Colored;
+//! String::from("Hello World").color("red").background("green").style("bold");
 //! ```
 //! Unknown color / style names are silently ignored.
 //! 
@@ -83,8 +84,12 @@ pub trait Colored {
     /// 
     /// # Example
     /// ```
+    /// use colorama::Colored;
     /// let my_string = String::from("Hello World");
-    /// println!("{}", my_string.color("green"));
+    /// assert_eq!(
+    ///     String::from("Hello World").color("red"), 
+    ///     "\x1b[31mHello World\x1b[0m"
+    /// );
     /// ```
     fn color(self, color: &str) -> Self;
 
@@ -95,8 +100,12 @@ pub trait Colored {
     /// 
     /// # Example
     /// ```
+    /// use colorama::Colored;
     /// let my_string = String::from("Hello World");
-    /// println!("{}", my_string.background("green"));
+    /// assert_eq!(
+    ///     String::from("Hello World").background("red"), 
+    ///     "\x1b[48;5;41mHello World\x1b[0m"
+    /// );
     /// ```
     fn background(self, background: &str) -> Self;
 
@@ -107,8 +116,12 @@ pub trait Colored {
     /// 
     /// # Example
     /// ```
+    /// use colorama::Colored;
     /// let my_string = String::from("Hello World");
-    /// println!("{}", my_string.style("bold"));
+    /// assert_eq!(
+    ///     String::from("Hello World").style("underline"),
+    ///     "\x1b[4mHello World\x1b[0m"
+    /// );
     /// ```
     fn style(self, style: &str) -> Self;
 }
@@ -121,8 +134,12 @@ impl Colored for String {
     /// 
     /// # Example
     /// ```
+    /// use colorama::Colored;
     /// let my_string = String::from("Hello World");
-    /// println!("{}", my_string.color("green"));
+    /// assert_eq!(
+    ///     String::from("Hello World").color("red"), 
+    ///     "\x1b[31mHello World\x1b[0m"
+    /// );
     /// ```
     fn color(self, color: &str) -> Self {
         let mut colored = String::new();
@@ -140,8 +157,12 @@ impl Colored for String {
     /// 
     /// # Example
     /// ```
+    /// use colorama::Colored;
     /// let my_string = String::from("Hello World");
-    /// println!("{}", my_string.background("green"));
+    /// assert_eq!(
+    ///     String::from("Hello World").background("red"), 
+    ///     "\x1b[48;5;41mHello World\x1b[0m"
+    /// );
     /// ```
     fn background(self, background: &str) -> Self {
         let mut colored = String::new();
@@ -159,8 +180,12 @@ impl Colored for String {
     /// 
     /// # Example
     /// ```
+    /// use colorama::Colored;
     /// let my_string = String::from("Hello World");
-    /// println!("{}", my_string.style("bold"));
+    /// assert_eq!(
+    ///     String::from("Hello World").style("underline"),
+    ///     "\x1b[4mHello World\x1b[0m"
+    /// );
     /// ```
     fn style(self, style: &str) -> Self {
         let mut styled = String::new();
@@ -175,30 +200,6 @@ impl Colored for String {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    #[test]
-    fn color() {
-        assert_eq!(
-            String::from("Hello World").color("red"), 
-            "\x1b[31mHello World\x1b[0m"
-        );
-    }
-
-    #[test]
-    fn background() {
-        assert_eq!(
-            String::from("Hello World").background("red"), 
-            "\x1b[48;5;41mHello World\x1b[0m"
-        );
-    }
-
-    #[test]
-    fn style() {
-        assert_eq!(
-            String::from("Hello World").style("underline"), 
-            "\x1b[4mHello World\x1b[0m"
-        );
-    }
 
     #[test]
     fn no_match() {
