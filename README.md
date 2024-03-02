@@ -7,9 +7,14 @@ Calling `.color("red")`, `.background("green")` or `.style("bold")`
 will wrap your string with the corresponding ANSI escape sequence.
 
 Different styles can be concatenated together:
-```
+```rust
 use colorama::Colored;
-String::from("Hello World").color("red").background("green").style("bold");
+
+let mut s = String::from("colorama");
+
+s.color("red").background("green").style("bold");
+
+println!("{}", s);
 ```
 Unknown color / style names are silently ignored.
 
